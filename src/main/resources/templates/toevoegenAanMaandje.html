@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<!--<h1>Wijn toevoegen aan maandje</h1>-->
+
+<head th:replace="fragments::head(title = ${wijn} ? ${wijn.jaar} :
+'Wijn niet gevonden')"></head>
+<body>
+<!--<nav th:replace="fragments::menu"></nav>-->
+<div th:if="not ${wijn}" class="fout">Wijn niet gevonden:
+    <th:block th:text="${id}"></th:block>
+</div>
+<th:block th:if="${wijn}" th:object="${wijn}">
+    <h1>Wijn toevoegen aan maandje</h1>
+    <h2><a th:href="@{/wijnen/{id}(id=*{getSoort().getId()})}">Terug naar overzicht</a></h2>
+    <dl>
+        <dt>Land</dt>
+        <dd th:text="*{soort.getLand().getNaam()}"></dd>
+        <dt>Soort</dt>
+        <dd th:text="*{soort.getNaam()}"></dd>
+        <dt>Jaar</dt>
+        <dd th:text="*{jaar}"></dd>
+        <dt>Beoordeling</dt>
+        <dd th:text="*{{getBeordeling()}}"></dd>
+        <dt>Prijs</dt>
+        <dd th:text="*{{prijs + ' €'}}"></dd>
+
+
+    </dl>
+    <form th:method="post" th:object="${bestelbonlijn}" th:action="@{/mandje/{id}(id = ${wijn.id})}">
+        <label for="aantal">Aantal flessen
+            <input type="number" required min="1" name="aantal" th:field="*{aantal}" id="aantal" ></label>
+        <button type="submit" >Toevoegen</button>
+    </form>
+</th:block>
+</body>
+</html>

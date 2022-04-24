@@ -1,0 +1,1 @@
+insert into soorten(naam, landId) values ('test', 1);

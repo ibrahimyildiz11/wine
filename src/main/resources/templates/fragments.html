@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="nl">
+    <div xmlns:th="http://www.thymeleaf.org">
+        <nav th:fragment="menu">
+            <img th:src="@{/images/intro.jpg}" alt="intro" class="fullwidth">
+            <h1><a th:href="@{/}">Wijnen</a></h1>
+                <ul>
+                    <li><a th:href="@{/soorten/1}"><img th:src="@{/images/land1.png}"></a> </li>
+                    <li><a th:href="@{/soorten/2}"><img th:src="@{/images/land2.png}"></a></li>
+                    <li><a th:href="@{/soorten/3}"><img th:src="@{/images/land3.png}"></a></li>
+                    <li><a th:href="@{/soorten/4}"><img th:src="@{/images/land4.png}"></a></li>
+                    <li><a th:href="@{/soorten/5}"><img th:src="@{/images/land5.png}"></a></li>
+                    <li><a th:href="@{/soorten/6}"><img th:src="@{/images/land6.png}"></a></li>
+                    <li><a th:href="@{/soorten/7}"><img th:src="@{/images/land7.png}"></a></li>
+                    <li><a th:href="@{/soorten/8}"><img th:src="@{/images/land8.png}"></a></li>
+                    <li><a th:href="@{/soorten/9}"><img th:src="@{/images/land9.png}"></a></li>
+                    <li><a th:href="@{/soorten/10}"><img th:src="@{/images/land10.png}"></a></li>
+                </ul>
+        </nav>
+        <head th:fragment="head(title)">
+            <link rel="icon" th:href="@{/images/wine.ico}" type="image/x-icon">
+            <title th:text="${title}"></title>
+            <link rel="stylesheet" th:href="@{/css/wine.css}">
+        </head>
+
+        <body>
+            <ul>
+                <li>
+
+                </li>
+            </ul>
+        </body>
+
+
+    </div>
+
+<body>
+
+</body>
+</html>
