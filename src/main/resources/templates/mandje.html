@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Mandje')"></head>
+<body>
+<!--<nav th:replace="fragments::menu"></nav>-->
+<h1>Mandje</h1>
+<form th:if="not ${wijnenTeBestellen.isEmpty()}"  th:object="${wijnenTeBestellen}"
+      th:method="get" th:action="@{/mandje}">
+    <table class="mandjeTabel">
+        <thead>
+        <tr>
+            <th>Wijn</th>
+            <th>Prijs</th>
+            <th>Aantal</th>
+            <th>Te Betalen</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="wijnTeBestellen : ${wijnenTeBestellen}" th:object="${wijnTeBestellen}">
+            <td th:text="*{getWijnJaar()}"></td>
+            <td th:text="*{getPrijs()}"></td>
+            <td th:text="*{getAantal()}"></td>
+            <td th:text="|*{prijs}| * |*{aantal}|"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><strong>Totaal: </strong></td>
+            <td>€ <span th:text="${totaal}"></span></td>
+
+        </tr>
+        </tbody>
+    </table>
+</form>
+<div th:if="${wijnenTeBestellen.isEmpty()}" class="boodschap">Je mandje is leeg.</div>
+
+<form th:if="not ${wijnenTeBestellen.isEmpty()}" th:object="${bestelbon}"
+      method="post" th:action="@{/mandje/bestelling}">
+    <label>Naam
+        <input type="text" required th:field="*{naam}" autofocus></label>
+    <label>Straat
+        <input type="text" required th:field="*{straat}"></label>
+    <label>Huisnummer
+        <input type="number" required th:field="*{huisNr}" autofocus></label>
+    <label>Postcode
+        <input type="number" required min="1000" max="9999"
+               th:field="*{postcode}" autofocus></label>
+    <label>Gemeente
+        <input type="text" required th:field="*{gemeente}" autofocus></label>
+
+    <div class="afhalen">
+        <input type="radio" id="afhalen" name="afhalen" value="afhalen" checked>
+        <label for="afhalen">Afhalen</label>
+    </div>
+
+    <div class="opsturen">
+        <input type="radio" id="opsturen" name="opsturen" value="opsturen">
+        <label for="opsturen">Opsturen</label>
+    </div>
+    </div>
+
+    <input type="hidden" name="id" value="0">
+    <button>Als bestelbon bevestigen</button>
+</form>
+</body>
+</html>

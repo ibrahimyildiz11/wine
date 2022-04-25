@@ -17,6 +17,13 @@ public class BestelbonlijnRepository {
         this.manager = manager;
     }
 
+    public void create(Bestelbonlijn bestelbonlijn) {
+        manager.persist(bestelbonlijn);
+    }
+
+    public Optional<Bestelbonlijn> findById(long id) {
+        return Optional.ofNullable(manager.find(Bestelbonlijn.class, id));
+    }
     public List<Bestelbonlijn> findByWijnId(long idVanWijn) {
         return manager.createNamedQuery("Bestelbonlijn.findByWijnId", Bestelbonlijn.class)
                 .setParameter("id", idVanWijn)

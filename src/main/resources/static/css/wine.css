@@ -50,6 +50,9 @@ label span {
 label {
     cursor: pointer;
 }
+div input {
+    display: inline;
+}
 
 input, button {
     display: block;
@@ -131,7 +134,7 @@ th {
 }
 
 th {
-    color: white;
+    color: black;
 }
 
 td {
@@ -158,4 +161,12 @@ tr:nth-child(odd) {
 
 tr:hover {
     background-color: gold;
+}
+
+label {
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input {
+    margin: .4rem;
 }

@@ -5,6 +5,7 @@ import be.vdab.wine.repositories.BestelbonlijnRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,7 +17,13 @@ public class BestelbonlijnService {
         this.bestelbonlijnRepository = bestelbonlijnRepository;
     }
 
+    public void create(Bestelbonlijn bestelbonlijn) {
+        bestelbonlijnRepository.create(bestelbonlijn);
+    }
     public Optional<Bestelbonlijn> findById(long id) {
         return bestelbonlijnRepository.findById(id);
+    }
+    public List<Bestelbonlijn> findByWijnId(long idVanWijn) {
+        return bestelbonlijnRepository.findByWijnId(idVanWijn);
     }
 }

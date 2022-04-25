@@ -30,10 +30,10 @@ public class Wijn {
     private Set<Bestelbonlijn> bestelbonlijnen;
 
 
-    public Wijn(Soort soort, int jaar, int beordeling, BigDecimal prijs, int inBestelling, long versie) {
+    public Wijn(Soort soort, int jaar, int beoordeling, BigDecimal prijs, int inBestelling, long versie) {
         this.soort = soort;
         this.jaar = jaar;
-        this.beoordeling = beordeling;
+        this.beoordeling = beoordeling;
         this.prijs = prijs;
         this.inBestelling = inBestelling;
         this.versie = versie;
@@ -55,7 +55,7 @@ public class Wijn {
         return jaar;
     }
 
-    public int getBeordeling() {
+    public int getBeoordeling() {
         return beoordeling;
     }
 

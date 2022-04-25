@@ -1,7 +1,7 @@
 package be.vdab.wine.domain;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -10,7 +10,7 @@ public class Bestelbon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private Timestamp besteld;
+    private LocalDate besteld;
     private String naam;
     private String straat;
     private String huisNr;
@@ -25,7 +25,7 @@ public class Bestelbon {
     /*@OrderBy("aantal")*/
     private Set<Bestelbonlijn> bestelbonlijnen;
 
-    public Bestelbon(Timestamp besteld, String naam, String straat,
+    public Bestelbon(LocalDate besteld, String naam, String straat,
                      String huisNr, String postcode, String gemeente, int bestelwijze, long versie) {
         this.besteld = besteld;
         this.naam = naam;
@@ -44,7 +44,7 @@ public class Bestelbon {
         return id;
     }
 
-    public Timestamp getBesteld() {
+    public LocalDate getBesteld() {
         return besteld;
     }
 
