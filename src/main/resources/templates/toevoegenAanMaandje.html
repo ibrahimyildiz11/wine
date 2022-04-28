@@ -19,13 +19,13 @@
         <dt>Jaar</dt>
         <dd th:text="*{jaar}"></dd>
         <dt>Beoordeling</dt>
-        <dd th:text="*{beoordeling}"></dd>
+        <img th:src="@{'/images/ster' +*{beoordeling} +'.png'}">
         <dt>Prijs</dt>
         <dd th:text="*{{prijs + ' €'}}"></dd>
 
 
     </dl>
-    <form th:method="post" th:object="${bestelbonlijn}" th:action="@{/mandje/{id}(id = ${wijn.id})}">
+    <form th:method="post" th:object="${aantalForm}" th:action="@{/mandje/{id}(id = ${wijn.id})}">
         <label for="aantal">Aantal flessen
             <input type="number" required min="1" name="aantal" th:field="*{aantal}" id="aantal" ></label>
         <button type="submit" >Toevoegen</button>

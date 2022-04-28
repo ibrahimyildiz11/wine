@@ -4,7 +4,7 @@
 <body>
 <!--<nav th:replace="fragments::menu"></nav>-->
 <h1>Mandje</h1>
-<form th:if="not ${wijnenTeBestellen.isEmpty()}"  th:object="${wijnenTeBestellen}"
+<form th:if="${wijnenTeBestellen}"  th:object="${wijnenTeBestellen}"
       th:method="get" th:action="@{/mandje}">
     <table class="mandjeTabel">
         <thead>
@@ -17,7 +17,7 @@
         </thead>
         <tbody>
         <tr th:each="wijnTeBestellen : ${wijnenTeBestellen}" th:object="${wijnTeBestellen}">
-            <td th:text="*{getWijnJaar()}"></td>
+            <td th:text="|*{getLandNaam()}  *{getSoortNaam()}  *{getWijnJaar()}|"></td>
             <td th:text="*{getPrijs()}"></td>
             <td th:text="*{getAantal()}"></td>
             <td th:text="|*{prijs}| * |*{aantal}|"></td>
@@ -32,9 +32,9 @@
         </tbody>
     </table>
 </form>
-<div th:if="${wijnenTeBestellen.isEmpty()}" class="boodschap">Je mandje is leeg.</div>
+<div th:if="not ${wijnenTeBestellen}" class="boodschap">Je mandje is leeg.</div>
 
-<form th:if="not ${wijnenTeBestellen.isEmpty()}" th:object="${bestelbon}"
+<form th:if="${wijnenTeBestellen}" th:object="${bestelbonForm}"
       method="post" th:action="@{/mandje/bestelling}">
     <label>Naam
         <input type="text" required th:field="*{naam}" autofocus></label>
@@ -44,19 +44,30 @@
         <input type="number" required th:field="*{huisNr}" autofocus></label>
     <label>Postcode
         <input type="number" required min="1000" max="9999"
-               th:field="*{postcode}" autofocus></label>
+               th:field="*{postCode}" autofocus></label>
     <label>Gemeente
         <input type="text" required th:field="*{gemeente}" autofocus></label>
 
-    <div class="afhalen">
-        <input type="radio" id="afhalen" name="afhalen" value="afhalen" checked>
+    <!--<div class="afhalen">
+        <input type="radio" th:field="*{bestelwijze}" id="afhalen" name="afhalen" value="1"
+               checked>
         <label for="afhalen">Afhalen</label>
     </div>
 
     <div class="opsturen">
-        <input type="radio" id="opsturen" name="opsturen" value="opsturen">
+        <input type="radio" id="opsturen" name="opsturen" value="0">
         <label for="opsturen">Opsturen</label>
+    </div>-->
+    <!-- Default radio -->
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
+        <label class="form-check-label" for="flexRadioDefault1"> Afhalen </label>
     </div>
+
+    <!-- Default checked radio -->
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked/>
+        <label class="form-check-label" for="flexRadioDefault2"> Opsturen </label>
     </div>
 
     <input type="hidden" name="id" value="0">

@@ -1,6 +1,7 @@
 package be.vdab.wine.services;
 
 import be.vdab.wine.domain.Wijn;
+import be.vdab.wine.exceptions.WijnNietGevondenException;
 import be.vdab.wine.repositories.WijnRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,5 +23,11 @@ public class WijnService {
     }
     public List<Wijn> findBySoortId(long idVanSoort) {
         return wijnRepository.findBySoortId(idVanSoort);
+    }
+
+    public void verhoogInBestelling(long id, int aantal) {
+        wijnRepository.findById(id).
+        orElseThrow(WijnNietGevondenException::new)
+                .verhoogInBestelling(aantal);
     }
 }

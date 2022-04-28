@@ -9,30 +9,25 @@ import java.util.Set;
 public class Bestelbon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private LocalDate besteld;
     private String naam;
-    private String straat;
-    private String huisNr;
-    private String postcode;
-    private String gemeente;
-    private int bestelwijze;
+
+    @Embedded
+    private Adres adres;
+    private Integer bestelwijze;
     @Version
-    private long versie;
+    private Long versie;
 
     @OneToMany
     @JoinColumn(name = "bonId")
     /*@OrderBy("aantal")*/
     private Set<Bestelbonlijn> bestelbonlijnen;
 
-    public Bestelbon(LocalDate besteld, String naam, String straat,
-                     String huisNr, String postcode, String gemeente, int bestelwijze, long versie) {
+    public Bestelbon(LocalDate besteld, String naam, Adres adres, Integer bestelwijze, Long versie) {
         this.besteld = besteld;
         this.naam = naam;
-        this.straat = straat;
-        this.huisNr = huisNr;
-        this.postcode = postcode;
-        this.gemeente = gemeente;
+        this.adres = adres;
         this.bestelwijze = bestelwijze;
         this.versie = versie;
     }
@@ -40,7 +35,7 @@ public class Bestelbon {
 
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -52,27 +47,15 @@ public class Bestelbon {
         return naam;
     }
 
-    public String getStraat() {
-        return straat;
+    public Adres getAdres() {
+        return adres;
     }
 
-    public String getHuisNr() {
-        return huisNr;
-    }
-
-    public String getPostcode() {
-        return postcode;
-    }
-
-    public String getGemeente() {
-        return gemeente;
-    }
-
-    public int getBestelwijze() {
+    public Integer getBestelwijze() {
         return bestelwijze;
     }
 
-    public long getVersie() {
+    public Long getVersie() {
         return versie;
     }
 }

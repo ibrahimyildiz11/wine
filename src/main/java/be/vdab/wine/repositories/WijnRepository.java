@@ -2,6 +2,7 @@ package be.vdab.wine.repositories;
 
 import be.vdab.wine.domain.Soort;
 import be.vdab.wine.domain.Wijn;
+import be.vdab.wine.dto.WijnEnAantal;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -27,5 +28,8 @@ public class WijnRepository {
                         manager.createEntityGraph(Wijn.MET_SOORT))
                 .getResultList();
     }
+
+
+
 
 }

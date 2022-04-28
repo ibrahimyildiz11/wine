@@ -12,7 +12,7 @@ import java.util.Set;
 @SessionScope
 public class Mandje implements Serializable {
     private static final long serialVersionUID = 1L;
-    private final Set<WijnEnAantal> wijnenTeBestellen = new LinkedHashSet<WijnEnAantal>();
+    private final Set<WijnEnAantal> wijnenTeBestellen = new LinkedHashSet<>();
     public Mandje() {
     }
 

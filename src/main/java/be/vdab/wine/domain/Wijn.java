@@ -70,4 +70,11 @@ public class Wijn {
     public long getVersie() {
         return versie;
     }
+
+    public void verhoogInBestelling(int aantal) {
+        if (aantal <= 0) {
+            throw new IllegalArgumentException();
+        }
+        inBestelling = inBestelling + aantal;
+    }
 }

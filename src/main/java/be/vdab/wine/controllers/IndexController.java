@@ -1,6 +1,8 @@
 package be.vdab.wine.controllers;
 
-import be.vdab.wine.domain.Bestelbonlijn;
+import be.vdab.wine.domain.Adres;
+import be.vdab.wine.forms.AantalForm;
+import be.vdab.wine.forms.BestelbonForm;
 import be.vdab.wine.services.SoortService;
 import be.vdab.wine.services.WijnService;
 import org.springframework.stereotype.Controller;
@@ -8,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.math.BigDecimal;
 
 @Controller
 @RequestMapping("/")
@@ -43,7 +43,14 @@ class IndexController {
         var modelAndView = new ModelAndView("toevoegenAanMaandje");
         wijnService.findById(id).ifPresent(wijn ->
                 modelAndView.addObject("wijn", wijn)
-                        .addObject("bestelbonlijn", new Bestelbonlijn(0, BigDecimal.ONE)));
+                        .addObject("aantalForm", new AantalForm(1)));
         return modelAndView;
     }
+
+    @GetMapping("metMandje")
+    public ModelAndView mod() {
+        return new ModelAndView();
+    }
+
+
 }
