@@ -24,12 +24,11 @@ public class Bestelbon {
     /*@OrderBy("aantal")*/
     private Set<Bestelbonlijn> bestelbonlijnen;
 
-    public Bestelbon(LocalDate besteld, String naam, Adres adres, Integer bestelwijze, Long versie) {
+    public Bestelbon(LocalDate besteld, String naam, Adres adres, Integer bestelwijze) {
         this.besteld = besteld;
         this.naam = naam;
         this.adres = adres;
         this.bestelwijze = bestelwijze;
-        this.versie = versie;
     }
     protected Bestelbon() {
 

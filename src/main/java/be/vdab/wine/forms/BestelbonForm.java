@@ -1,23 +1,22 @@
 package be.vdab.wine.forms;
 
-import be.vdab.wine.domain.Adres;
-
 public class BestelbonForm {
-    private final String naam;
+    private String naam;
     private final String straat;
     private final String huisNr;
     private final String postCode;
     private final String gemeente;
-    /*private final Integer bestelwijze;*/
+    private final Integer bestelwijze;
 
     private final Long aantal;
 
-    public BestelbonForm(String naam, String straat, String huisNr, String postCode, String gemeente, Long aantal) {
+    public BestelbonForm(String naam, String straat, String huisNr, String postCode, String gemeente, Integer bestelwijze, Long aantal) {
         this.naam = naam;
         this.straat = straat;
         this.huisNr = huisNr;
         this.postCode = postCode;
         this.gemeente = gemeente;
+        this.bestelwijze = bestelwijze;
         this.aantal = aantal;
     }
 
@@ -45,5 +44,9 @@ public class BestelbonForm {
 
     public Long getAantal() {
         return aantal;
+    }
+
+    public Integer getBestelwijze() {
+        return bestelwijze;
     }
 }

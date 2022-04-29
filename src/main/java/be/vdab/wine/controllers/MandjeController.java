@@ -2,8 +2,6 @@ package be.vdab.wine.controllers;
 
 import be.vdab.wine.domain.Adres;
 import be.vdab.wine.domain.Bestelbon;
-import be.vdab.wine.domain.Bestelbonlijn;
-import be.vdab.wine.domain.Wijn;
 import be.vdab.wine.dto.WijnEnAantal;
 import be.vdab.wine.forms.AantalForm;
 import be.vdab.wine.forms.BestelbonForm;
@@ -57,7 +55,7 @@ class MandjeController {
         var modelAndView = new ModelAndView("mandje",
                 "wijnenTeBestellen", mandje.getWijnenTeBestellen());
         modelAndView.addObject("bestelbonForm",
-                new BestelbonForm("","","","","",1L));
+                new BestelbonForm("","","","","", 0, 1L));
         var totaal = mandje.getWijnenTeBestellen().stream().mapToDouble(wijn ->
                 (double) (wijn.getPrijs().setScale(2, RoundingMode.HALF_UP).doubleValue()
                         * wijn.getAantal())).sum();
@@ -78,7 +76,7 @@ class MandjeController {
         }
         var bestelbon = new Bestelbon(LocalDate.now(), bestelbonForm.getNaam(), new Adres(bestelbonForm.getStraat(),
                 bestelbonForm.getHuisNr(), bestelbonForm.getPostCode(), bestelbonForm.getGemeente()),
-                0,1L);
+                bestelbonForm.getBestelwijze());
         bestelbonService.create(bestelbon);
         var id = bestelbon.getId();
 
