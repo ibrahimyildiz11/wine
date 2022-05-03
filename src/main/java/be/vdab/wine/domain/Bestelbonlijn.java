@@ -7,35 +7,34 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "bestelbonlijnen")
-@NamedEntityGraph(name = "Bestelbonlijn.metWijn",
+/*@NamedEntityGraph(name = "Bestelbonlijn.metWijn",
         attributeNodes = @NamedAttributeNode("wijn"))
 @NamedEntityGraph(name = "Bestelbonlijn.metBestelbon",
-        attributeNodes = @NamedAttributeNode("bestelbon"))
-public class Bestelbonlijn implements Serializable {
+        attributeNodes = @NamedAttributeNode("bestelbon"))*/
+public class Bestelbonlijn implements Serializable{
     @Id
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "bonId")
     private Bestelbon bestelbon;
     public static final String MET_BESTELBON = "Bestelbonlijn.metBestelbon";
     @Id
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "wijnId")
     private Wijn wijn;
-    public static final String MET_WIJN = "Bestelbonlijn.metWijn";
+    /*public static final String MET_WIJN = "Bestelbonlijn.metWijn";*/
     private int aantal;
     private BigDecimal prijs;
 
 
 
-    public Bestelbonlijn(long bestelbonId, long wijnId, int aantal, BigDecimal prijs) {
-        bestelbonId = 1;
-        wijnId = 1;
+    public Bestelbonlijn(Bestelbon bestelbon, Wijn wijn, int aantal, BigDecimal prijs) {
+        this.bestelbon = bestelbon;
+        this.wijn = wijn;
         this.aantal = aantal;
         this.prijs = prijs;
     }
 
     protected Bestelbonlijn() {
-
     }
 
     public Bestelbon getBestelbon() {

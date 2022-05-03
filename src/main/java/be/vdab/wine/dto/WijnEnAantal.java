@@ -3,7 +3,7 @@ package be.vdab.wine.dto;
 import java.math.BigDecimal;
 
 public class WijnEnAantal {
-    private final long id;
+    private final Long id;
 
     private final String landNaam;
     private final String soortNaam;
@@ -11,7 +11,7 @@ public class WijnEnAantal {
     private final int aantal;
     private final BigDecimal prijs;
 
-    public WijnEnAantal(long id, String landNaam, String soortNaam, int wijnJaar, int aantal, BigDecimal prijs) {
+    public WijnEnAantal(Long id, String landNaam, String soortNaam, int wijnJaar, int aantal, BigDecimal prijs) {
         this.id = id;
         this.landNaam = landNaam;
         this.soortNaam = soortNaam;
@@ -40,7 +40,7 @@ public class WijnEnAantal {
         return wijnJaar;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 }

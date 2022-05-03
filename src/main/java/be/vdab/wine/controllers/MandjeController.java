@@ -2,6 +2,7 @@ package be.vdab.wine.controllers;
 
 import be.vdab.wine.domain.Adres;
 import be.vdab.wine.domain.Bestelbon;
+import be.vdab.wine.domain.Bestelbonlijn;
 import be.vdab.wine.dto.WijnEnAantal;
 import be.vdab.wine.forms.AantalForm;
 import be.vdab.wine.forms.BestelbonForm;
@@ -84,13 +85,13 @@ class MandjeController {
         mandje.getWijnenTeBestellen().forEach(wijnTeBestel ->
                 wijnService.verhoogInBestelling(wijnTeBestel.getId(), wijnTeBestel.getAantal()));
 
-        /*var bestelbonLijn = mandje.getWijnenTeBestellen();
+        var bestelbonLijn = mandje.getWijnenTeBestellen();
         mandje.getWijnenTeBestellen().forEach(wijnTeBestel ->
                 bestelbonlijnService.create(
-                        new Bestelbonlijn(bestelbon.getId(), wijnTeBestel.getId(),
-                                wijnTeBestel.getAantal(), wijnTeBestel.getPrijs())));*/
+                        new Bestelbonlijn(bestelbon, wijnService.findById(wijnTeBestel.getId()).get(),
+                                wijnTeBestel.getAantal(), wijnTeBestel.getPrijs())));
 
-        /*mandje.maaktHetMandjeLeeg();*/
+        mandje.maaktHetMandjeLeeg();
 
         return "redirect:/mandje/rapport/{idNieuweBestelbon}";
     }

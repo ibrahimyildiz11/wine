@@ -24,10 +24,11 @@ public class Wijn {
     @Version
     private long versie;
 
-    @OneToMany
-    @JoinColumn(name = "wijnId")
-    /*@OrderBy("aantal")*/
-    private Set<Bestelbonlijn> bestelbonlijnen;
+    @OneToMany(mappedBy = "wijn")
+
+    /*@JoinColumn(name = "wijnId")
+    @OrderBy("aantal")*/
+    private Set<Bestelbonlijn> bestelbonlijns;
 
 
     public Wijn(Soort soort, int jaar, int beoordeling, BigDecimal prijs, int inBestelling, long versie) {
@@ -70,6 +71,41 @@ public class Wijn {
     public long getVersie() {
         return versie;
     }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setSoort(Soort soort) {
+        this.soort = soort;
+    }
+
+    public void setJaar(int jaar) {
+        this.jaar = jaar;
+    }
+
+    public void setBeoordeling(int beoordeling) {
+        this.beoordeling = beoordeling;
+    }
+
+    public void setPrijs(BigDecimal prijs) {
+        this.prijs = prijs;
+    }
+
+    public void setInBestelling(int inBestelling) {
+        this.inBestelling = inBestelling;
+    }
+
+    public void setVersie(long versie) {
+        this.versie = versie;
+    }
+
+    /*public void setBestelbonnen(Set<Bestelbon> bestelbonnen) {
+        this.bestelbonnen = bestelbonnen;
+    }*/
+    /*public void setBestelbonlijnen(Set<Bestelbonlijn> bestelbonlijnen) {
+        this.bestelbonlijnen = bestelbonlijnen;
+    }*/
 
     public void verhoogInBestelling(int aantal) {
         if (aantal <= 0) {
