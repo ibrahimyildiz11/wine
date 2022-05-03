@@ -7,10 +7,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "bestelbonlijnen")
-/*@NamedEntityGraph(name = "Bestelbonlijn.metWijn",
-        attributeNodes = @NamedAttributeNode("wijn"))
-@NamedEntityGraph(name = "Bestelbonlijn.metBestelbon",
-        attributeNodes = @NamedAttributeNode("bestelbon"))*/
 public class Bestelbonlijn implements Serializable{
     @Id
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -21,7 +17,7 @@ public class Bestelbonlijn implements Serializable{
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "wijnId")
     private Wijn wijn;
-    /*public static final String MET_WIJN = "Bestelbonlijn.metWijn";*/
+
     private int aantal;
     private BigDecimal prijs;
 

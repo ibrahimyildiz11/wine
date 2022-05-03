@@ -20,12 +20,6 @@ public class Bestelbon {
     private Long versie;
 
     @OneToMany(mappedBy = "bestelbon")
-    /*@JoinColumn(name = "bonId")*/
-    /*@OrderBy("aantal")*/
-    /*@JoinTable(
-            name = "bestelbonlijnen",
-            joinColumns = @JoinColumn(name = "bonId"),
-            inverseJoinColumns = @JoinColumn(name = "wijnId"))*/
     private Set<Bestelbonlijn> bestelbonlijns;
 
     public Bestelbon(LocalDate besteld, String naam, Adres adres, Integer bestelwijze) {
@@ -62,31 +56,4 @@ public class Bestelbon {
         return versie;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setBesteld(LocalDate besteld) {
-        this.besteld = besteld;
-    }
-
-    public void setNaam(String naam) {
-        this.naam = naam;
-    }
-
-    public void setAdres(Adres adres) {
-        this.adres = adres;
-    }
-
-    public void setBestelwijze(Integer bestelwijze) {
-        this.bestelwijze = bestelwijze;
-    }
-
-    public void setVersie(Long versie) {
-        this.versie = versie;
-    }
-
-    /*public void setWijnen(Set<Wijn> wijnen) {
-        this.wijnen = wijnen;
-    }*/
 }

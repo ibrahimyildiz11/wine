@@ -48,9 +48,6 @@ public class Soort {
         return versie;
     }
 
-    /*public Set<Land> getLanden() {
-        return Collections.unmodifiableSet(landen);
-    }*/
 
     public Land getLand() {
         return land;
