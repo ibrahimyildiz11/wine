@@ -24,15 +24,4 @@ public class BestelbonlijnRepository {
     public Optional<Bestelbonlijn> findById(long id) {
         return Optional.ofNullable(manager.find(Bestelbonlijn.class, id));
     }
-    /*public List<Bestelbonlijn> findByWijnId(long idVanWijn) {
-        return manager.createNamedQuery("Bestelbonlijn.findByWijnId", Bestelbonlijn.class)
-                .setParameter("id", idVanWijn)
-                .setHint("javax.persistence.loadgraph",
-                        manager.createEntityGraph(Bestelbonlijn.MET_BESTELBON))
-                .getResultList();
-    }*/
-
-    /*public void save(Bestelbonlijn bestelbonlijn) {
-        manager.merge(bestelbonlijn);
-    }*/
 }

@@ -24,14 +24,5 @@ public class BestelbonlijnService {
     public Optional<Bestelbonlijn> findById(long id) {
         return bestelbonlijnRepository.findById(id);
     }
-    /*public List<Bestelbonlijn> findByWijnId(long idVanWijn) {
-        return bestelbonlijnRepository.findByWijnId(idVanWijn);
-    }*/
 
-    /*public void save(Bestelbonlijn bestelbonlijn){
-        bestelbonlijnRepository.save(bestelbonlijn);
-    }*/
-    /*public void add(Long wijnId, Long bestelbonId, int aantal, BigDecimal prijs) {
-
-    }*/
 }
