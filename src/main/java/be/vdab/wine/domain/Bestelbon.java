@@ -2,6 +2,7 @@ package be.vdab.wine.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -56,4 +57,17 @@ public class Bestelbon {
         return versie;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bestelbon bestelbon = (Bestelbon) o;
+        return Objects.equals(id, bestelbon.id) && Objects.equals(besteld, bestelbon.besteld) && Objects.equals(naam, bestelbon.naam) && Objects.equals(adres, bestelbon.adres) && Objects.equals(bestelwijze, bestelbon.bestelwijze) && Objects.equals(versie, bestelbon.versie) && Objects.equals(bestelbonlijns, bestelbon.bestelbonlijns);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, besteld, naam, adres, bestelwijze, versie, bestelbonlijns);
+    }
 }

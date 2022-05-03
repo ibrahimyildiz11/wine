@@ -3,6 +3,7 @@ package be.vdab.wine.domain;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -74,5 +75,18 @@ public class Wijn {
             throw new IllegalArgumentException();
         }
         inBestelling = inBestelling + aantal;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Wijn wijn = (Wijn) o;
+        return id == wijn.id && jaar == wijn.jaar && beoordeling == wijn.beoordeling && inBestelling == wijn.inBestelling && versie == wijn.versie && Objects.equals(soort, wijn.soort) && Objects.equals(prijs, wijn.prijs) && Objects.equals(bestelbonlijns, wijn.bestelbonlijns);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, soort, jaar, beoordeling, prijs, inBestelling, versie, bestelbonlijns);
     }
 }

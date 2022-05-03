@@ -1,10 +1,7 @@
 package be.vdab.wine.domain;
 
 import javax.persistence.*;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "landen")
@@ -49,5 +46,19 @@ public class Land {
             throw new NullPointerException();
         }
         return sorten.add(soort);
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Land land = (Land) o;
+        return id == land.id && versie == land.versie && Objects.equals(naam, land.naam) && Objects.equals(sorten, land.sorten);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, naam, versie, sorten);
     }
 }
