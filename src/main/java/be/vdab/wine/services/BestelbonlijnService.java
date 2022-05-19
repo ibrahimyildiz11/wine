@@ -21,8 +21,8 @@ public class BestelbonlijnService {
     public void create(Bestelbonlijn bestelbonlijn) {
         bestelbonlijnRepository.create(bestelbonlijn);
     }
-    public Optional<Bestelbonlijn> findById(long id) {
+    /*public Optional<Bestelbonlijn> findById(long id) {
         return bestelbonlijnRepository.findById(id);
-    }
+    }*/
 
 }

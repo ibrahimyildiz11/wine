@@ -20,9 +20,6 @@ public class Bestelbon {
     @Version
     private Long versie;
 
-    @OneToMany(mappedBy = "bestelbon")
-    private Set<Bestelbonlijn> bestelbonlijns;
-
     public Bestelbon(LocalDate besteld, String naam, Adres adres, Integer bestelwijze) {
         this.besteld = besteld;
         this.naam = naam;
@@ -61,13 +58,15 @@ public class Bestelbon {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Bestelbon)) return false;
         Bestelbon bestelbon = (Bestelbon) o;
-        return Objects.equals(id, bestelbon.id) && Objects.equals(besteld, bestelbon.besteld) && Objects.equals(naam, bestelbon.naam) && Objects.equals(adres, bestelbon.adres) && Objects.equals(bestelwijze, bestelbon.bestelwijze) && Objects.equals(versie, bestelbon.versie) && Objects.equals(bestelbonlijns, bestelbon.bestelbonlijns);
+        return Objects.equals(id, bestelbon.id) && Objects.equals(besteld, bestelbon.besteld) &&
+                Objects.equals(naam, bestelbon.naam) && Objects.equals(adres, bestelbon.adres)
+                && Objects.equals(bestelwijze, bestelbon.bestelwijze) && Objects.equals(versie, bestelbon.versie);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, besteld, naam, adres, bestelwijze, versie, bestelbonlijns);
+        return Objects.hash(id, besteld, naam, adres, bestelwijze, versie);
     }
 }

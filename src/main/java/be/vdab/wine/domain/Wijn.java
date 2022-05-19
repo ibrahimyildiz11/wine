@@ -25,9 +25,6 @@ public class Wijn {
     @Version
     private long versie;
 
-    @OneToMany(mappedBy = "wijn")
-    private Set<Bestelbonlijn> bestelbonlijns;
-
 
     public Wijn(Soort soort, int jaar, int beoordeling, BigDecimal prijs, int inBestelling, long versie) {
         this.soort = soort;
@@ -80,13 +77,13 @@ public class Wijn {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Wijn)) return false;
         Wijn wijn = (Wijn) o;
-        return id == wijn.id && jaar == wijn.jaar && beoordeling == wijn.beoordeling && inBestelling == wijn.inBestelling && versie == wijn.versie && Objects.equals(soort, wijn.soort) && Objects.equals(prijs, wijn.prijs) && Objects.equals(bestelbonlijns, wijn.bestelbonlijns);
+        return id == wijn.id && jaar == wijn.jaar && beoordeling == wijn.beoordeling && inBestelling == wijn.inBestelling && versie == wijn.versie && Objects.equals(soort, wijn.soort) && Objects.equals(prijs, wijn.prijs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, soort, jaar, beoordeling, prijs, inBestelling, versie, bestelbonlijns);
+        return Objects.hash(id, soort, jaar, beoordeling, prijs, inBestelling, versie);
     }
 }

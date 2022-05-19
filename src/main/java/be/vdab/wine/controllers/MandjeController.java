@@ -3,6 +3,7 @@ package be.vdab.wine.controllers;
 import be.vdab.wine.domain.Adres;
 import be.vdab.wine.domain.Bestelbon;
 import be.vdab.wine.domain.Bestelbonlijn;
+import be.vdab.wine.domain.BestelbonlijnId;
 import be.vdab.wine.dto.WijnEnAantal;
 import be.vdab.wine.forms.AantalForm;
 import be.vdab.wine.forms.BestelbonForm;
@@ -40,7 +41,7 @@ class MandjeController {
     }
 
     @PostMapping("{id}")
-    public String voegToe(AantalForm form, @PathVariable long id, RedirectAttributes redirect) {
+    public String voegToe(@Valid AantalForm form, @PathVariable long id, RedirectAttributes redirect) {
         mandje.voegToe(new WijnEnAantal(
                 id, wijnService.findById(id).get().getSoort().getLand().getNaam(),
                 wijnService.findById(id).get().getSoort().getNaam(),
@@ -88,7 +89,7 @@ class MandjeController {
         var bestelbonLijn = mandje.getWijnenTeBestellen();
         mandje.getWijnenTeBestellen().forEach(wijnTeBestel ->
                 bestelbonlijnService.create(
-                        new Bestelbonlijn(bestelbon, wijnService.findById(wijnTeBestel.getId()).get(),
+                        new Bestelbonlijn(new BestelbonlijnId(id, wijnTeBestel.getId()),
                                 wijnTeBestel.getAantal(), wijnTeBestel.getPrijs())));
 
         mandje.maaktHetMandjeLeeg();

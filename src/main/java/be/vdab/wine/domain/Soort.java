@@ -15,13 +15,14 @@ public class Soort {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "landId")
     private Land land;
-    public static final String MET_LAND = "Soort.metLand";
 
+
+
+    public static final String MET_LAND = "Soort.metLand";
     @Version
     private long versie;
 
-    @OneToMany
-    @JoinColumn(name = "soortId")
+    @OneToMany(mappedBy = "soort")
     @OrderBy("jaar")
     private Set<Wijn> wijnen;
 

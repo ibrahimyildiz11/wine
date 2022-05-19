@@ -21,7 +21,7 @@ public class BestelbonlijnRepository {
         manager.persist(bestelbonlijn);
     }
 
-    public Optional<Bestelbonlijn> findById(long id) {
+    /*public Optional<Bestelbonlijn> findById(long id) {
         return Optional.ofNullable(manager.find(Bestelbonlijn.class, id));
-    }
+    }*/
 }

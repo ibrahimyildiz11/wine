@@ -8,37 +8,26 @@ import java.util.Objects;
 @Entity
 @Table(name = "bestelbonlijnen")
 public class Bestelbonlijn implements Serializable{
-    @Id
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "bonId")
-    private Bestelbon bestelbon;
-    public static final String MET_BESTELBON = "Bestelbonlijn.metBestelbon";
-    @Id
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "wijnId")
-    private Wijn wijn;
+    @EmbeddedId
+    private BestelbonlijnId bestelbonlijnId;
 
     private int aantal;
     private BigDecimal prijs;
 
 
 
-    public Bestelbonlijn(Bestelbon bestelbon, Wijn wijn, int aantal, BigDecimal prijs) {
-        this.bestelbon = bestelbon;
-        this.wijn = wijn;
+    public Bestelbonlijn(BestelbonlijnId bestelbonlijnId, int aantal, BigDecimal prijs) {
+        this.bestelbonlijnId = bestelbonlijnId;
         this.aantal = aantal;
         this.prijs = prijs;
     }
 
     protected Bestelbonlijn() {
+
     }
 
-    public Bestelbon getBestelbon() {
-        return bestelbon;
-    }
-
-    public Wijn getWijn() {
-        return wijn;
+    public BestelbonlijnId getBestelbonlijnId() {
+        return bestelbonlijnId;
     }
 
     public int getAantal() {
@@ -54,11 +43,11 @@ public class Bestelbonlijn implements Serializable{
         if (this == o) return true;
         if (!(o instanceof Bestelbonlijn)) return false;
         Bestelbonlijn that = (Bestelbonlijn) o;
-        return aantal == that.aantal && Objects.equals(bestelbon, that.bestelbon) && Objects.equals(wijn, that.wijn) && Objects.equals(prijs, that.prijs);
+        return aantal == that.aantal && Objects.equals(bestelbonlijnId, that.bestelbonlijnId) && Objects.equals(prijs, that.prijs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bestelbon, wijn, aantal, prijs);
+        return Objects.hash(bestelbonlijnId, aantal, prijs);
     }
 }
